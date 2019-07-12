@@ -3,29 +3,39 @@
 const schema = `
 # declare custom scalars for date as GQDate
 scalar GQDate
-# registration type
-type Registration {
-    id: ID!
-    firstName: String
-    lastName: String
-    dob: GQDate
-    email: String
-    password: String
+
+type ExplicitContent {
+    filter_enabled: Boolean
+    filter_locked: Boolean
+}
+
+type ExternalUrls {
+    spotify: String
+}
+
+type Followers {
+    href: String
+    total: Int
+}
+
+type User {
+    birthdate: GQDate
     country: String
+    display_name: String
+    email: String
+    explicit_content: ExplicitContent
+    external_urls: ExternalUrls
+    followers: Followers
+    href: String
+    id: String
+    product: String
+    type: String
+    uri: String
 }
+
 type Query {
-    # Return a registration by id
-    Registration(id: ID!): Registration
-    # Return all registrations
-    Registrations(limit: Int): [Registration]
-}
-type Mutation {
-    # Create a registration
-    createRegistration (firstName: String,lastName: String, dob: GQDate, email: String, password: String, country: String): Registration
-    # Update a registration
-    updateRegistration (id: ID!, firstName: String,lastName: String, dob: GQDate, email: String, password: String, country: String): Registration
-    # Delete a registration
-    deleteRegistration(id: ID!): Registration
+    # Get User from Spotify
+    User: User
 }
 `;
 
