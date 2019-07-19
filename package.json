@@ -4,16 +4,20 @@
   "description": "A GraphQL server",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node local-server.js",
+    "deploy": "serverless deploy --aws-profile angular-spotify-graphql-serverless"
   },
   "author": "Matthew Gardner",
   "license": "ISC",
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "express-graphql": "^0.8.0",
+    "apollo-server-lambda": "^2.7.0",
     "graphql": "^14.4.2",
-    "graphql-tools": "^4.0.5",
+    "lodash": "^4.17.15",
     "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "apollo-server-express": "^2.7.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1"
   }
 }
