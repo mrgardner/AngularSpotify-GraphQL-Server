@@ -35,12 +35,11 @@ exports.UserTypes = gql`
 exports.UserResolvers = {
   Query: {
     user: (root, args, context) =>  {
-      console.log(context);
-        const token = `${context.token}`;
-        return fetch('https://api.spotify.com/v1/me', {
-            method: 'get',
-            headers: {'Content-Type': 'application/json', Authorization: token}
-        }).then(res => res.json())
+      const token = `${context.token}`;
+      return fetch('https://api.spotify.com/v1/me', {
+        method: 'get',
+        headers: {'Content-Type': 'application/json', Authorization: token}
+      }).then(res => res.json())
     }
   }
 };

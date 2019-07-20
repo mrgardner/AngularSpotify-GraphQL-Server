@@ -60,11 +60,11 @@ exports.PlaylistTypes = gql`
 exports.PlaylistResolvers = {
   Query: {
     playlists: (root, args, context) =>  {
-        const token = `${context.token}`;
-        return fetch(args.url, {
-            method: 'get',
-            headers: {'Content-Type': 'application/json', Authorization: token}
-        }).then(res => res.json());
+      const token = `${context.token}`;
+      return fetch(args.url, {
+        method: 'get',
+        headers: {'Content-Type': 'application/json', Authorization: token}
+      }).then(res => res.json());
     }
   }
 };
