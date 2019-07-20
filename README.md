@@ -5,8 +5,11 @@ This is a graphql server that is for [AngularSpotify](https://github.com/mrgardn
 ## Folder Structure
 
 `/schema` - contains the types, resolvers, queries, and mutations.
+
 `graphql.js` - the server file for aws lambda
+
 `local-server` - the local dev server
+
 `package.json` - contains all packages and scripts
 
 ## Local Development
