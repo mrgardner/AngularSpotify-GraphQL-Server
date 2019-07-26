@@ -1,9 +1,9 @@
-const fetch = require('node-fetch');
+const { callApi } = require('../utils/callApi');
 const { gql } = require('apollo-server-lambda');
 
 exports.UserTypes = gql`
   extend type Query {
-    user: User
+    user(url: String!): User
   }
 
   type ExplicitContent {
@@ -34,12 +34,8 @@ exports.UserTypes = gql`
 
 exports.UserResolvers = {
   Query: {
-    user: (root, args, context) =>  {
-      const token = `${context.token}`;
-      return fetch('https://api.spotify.com/v1/me', {
-        method: 'get',
-        headers: {'Content-Type': 'application/json', Authorization: token}
-      }).then(res => res.json())
+    user: (source, args, context) =>  {
+      return callApi(args.url, 'GET', context.token);
     }
   }
 };
