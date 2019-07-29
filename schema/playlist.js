@@ -1,9 +1,92 @@
-const fetch = require('node-fetch');
+const { callApi } = require('../utils/callApi');
 const { gql } = require('apollo-server-lambda');
 
 exports.PlaylistTypes = gql`
   extend type Query {
-    playlists(url: String!): PlaylistResponse
+    playlists(url: String!): PlaylistResponse,
+    playlist(url: String!): Playlist,
+    playlistTracks(url: String!): TrackResponse
+  }
+
+  type TrackResponse {
+    href: String
+    items: [TrackInfo]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
+    total: Int
+  }
+
+  type TrackInfo {
+    added_at: String
+    added_by: AddedBy
+    is_local: Boolean
+    track: Track
+    video_thumbnail: VideoThumbNail
+  }
+
+  type AddedBy {
+    external_urls: ExternalUrls
+    href: String
+    id: String
+    type: String
+    uri: String
+  }
+  
+  type Track {
+    album: Album
+    artists: [Artist]
+    available_markets: [String]
+    disc_number: Int
+    duration_ms: Int
+    episode: Boolean
+    explicit: Boolean
+    external_ids: ExternalIds
+    external_urls: ExternalUrls
+    href: String
+    id: String
+    is_local: Boolean
+    name: String
+    popularity: Int
+    preview_url: String
+    track: Boolean
+    track_number: Int
+    type: String
+    uri: String
+  }
+
+  type Album {
+    album_type: String
+    artists: [Artist]
+    available_markets: [String]
+    external_urls: ExternalUrls
+    href: String
+    id: String
+    images: [Image]
+    name: String
+    release_date: String
+    release_date_precision: String
+    total_tracks: Int
+    type: String
+    uri: String
+  }
+
+  type Artist {
+    external_urls: ExternalUrls
+    href: String
+    id: String
+    name: String
+    type: String
+    uri: String
+  }
+
+  type ExternalIds {
+    isrc: String
+  }
+
+  type VideoThumbNail {
+    url: String
   }
 
   type PlaylistResponse {
@@ -59,12 +142,14 @@ exports.PlaylistTypes = gql`
 
 exports.PlaylistResolvers = {
   Query: {
-    playlists: (root, args, context) =>  {
-      const token = `${context.token}`;
-      return fetch(args.url, {
-        method: 'get',
-        headers: {'Content-Type': 'application/json', Authorization: token}
-      }).then(res => res.json());
+    playlists: (source, args, context) =>  {
+      return callApi(args.url, 'GET', context.token);
+    },
+    playlist: (source, args, context) =>  {
+      return callApi(args.url, 'GET', context.token);
+    },
+    playlistTracks: (source, args, context) => {
+      return callApi(args.url, 'GET', context.token);
     }
   }
 };
