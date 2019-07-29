@@ -4,14 +4,18 @@ const { PlaylistTypes, PlaylistResolvers } = require('./playlist');
 const { gql } = require('apollo-server-lambda');
 
 const Query = gql`
-  # declare custom scalars for date as GQDate
-  scalar GQDate
-
   type Query {
-    # Get User from Spotify
     hello: String
   }
 `;
+
+const Resolver = {
+  Query: {
+    hello: () =>  {
+      return "Hello World";
+    }
+  }
+};
 
 exports.typeDefs = [
   Query,
@@ -20,6 +24,7 @@ exports.typeDefs = [
 ];
 
 exports.resolvers = _.merge(
+  Resolver,
   UserResolvers,
   PlaylistResolvers
 );
