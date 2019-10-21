@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const { UserTypes, UserResolvers } = require('./user');
 const { PlaylistTypes, PlaylistResolvers } = require('./playlist');
+const { AlbumTypes, AlbumResolvers } = require('./albums');
 const { gql } = require('apollo-server-lambda');
 
 const Query = gql`
@@ -20,11 +21,13 @@ const Resolver = {
 exports.typeDefs = [
   Query,
   UserTypes,
-  PlaylistTypes
+  PlaylistTypes,
+  AlbumTypes
 ];
 
 exports.resolvers = _.merge(
   Resolver,
   UserResolvers,
-  PlaylistResolvers
+  PlaylistResolvers,
+  AlbumResolvers
 );

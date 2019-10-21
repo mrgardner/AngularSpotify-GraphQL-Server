@@ -120,6 +120,11 @@ exports.PlaylistTypes = gql`
 
   type Tracks {
     href: String
+    items: [Track]
+    limit: Int
+    next: String
+    offset: Int
+    previous: String
     total: Int
   }
 
