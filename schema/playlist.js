@@ -130,7 +130,9 @@ exports.PlaylistTypes = gql`
 
   type Playlist {
     collaborative: Boolean
+    description: String
     external_urls: ExternalUrls
+    followers: Followers
     href: String
     id: String
     images: [Image]
