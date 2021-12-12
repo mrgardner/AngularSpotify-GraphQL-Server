@@ -142,6 +142,7 @@ exports.PlaylistTypes = gql`
     tracks: Tracks
     type: String
     uri: String
+    followers: Followers
   }
 `;
 
