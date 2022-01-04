@@ -12,10 +12,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    // get the user token from the headers
-    const token = req.headers.authorization || '';
-    
-    return {token};
+    return {
+      token: req.headers.authorization || ''
+    }
   }
 });
 
