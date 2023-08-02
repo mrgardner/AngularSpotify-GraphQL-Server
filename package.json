@@ -3,21 +3,23 @@
   "version": "0.0.0",
   "description": "A GraphQL server",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node local-server.js",
-    "deploy": "serverless deploy --aws-profile angular-spotify-graphql-serverless"
+    "compile": "tsc",
+    "start": "yarn compile && node ./dist/src/index.js"
   },
   "author": "Matthew Gardner",
   "license": "ISC",
   "dependencies": {
-    "apollo-server-lambda": "^2.7.0",
-    "graphql": "^14.4.2",
+    "@apollo/datasource-rest": "^6.0.1",
+    "@apollo/server": "^4.9.0",
+    "apollo-server-lambda": "^3.12.0",
+    "graphql": "^16.7.1",
     "lodash": "^4.17.15",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
-    "apollo-server-express": "^2.7.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "@types/node": "^20.4.5",
+    "typescript": "^5.1.6"
   }
 }

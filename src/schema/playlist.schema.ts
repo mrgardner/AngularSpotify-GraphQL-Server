@@ -1,13 +1,10 @@
-const { callApi } = require('../utils/callApi');
-const { gql } = require('apollo-server-lambda');
-
-exports.PlaylistTypes = gql`
-  extend type Query {
-    playlists(url: String!): PlaylistResponse,
-    playlist(url: String!): Playlist,
-    playlistTracks(url: String!): TrackResponse
+export const playlistTypes = `#graphql
+  type Query {
+    playlists(morePlaylists: String): PlaylistResponse,
+    playlist(playlistID: String!): Playlist,
+    playlistTracks(trackOffset: Int!, playlistID: String!, limit: Int!): TrackResponse
   }
-
+  
   type TrackResponse {
     href: String
     items: [TrackInfo]
@@ -145,17 +142,3 @@ exports.PlaylistTypes = gql`
     followers: Followers
   }
 `;
-
-exports.PlaylistResolvers = {
-  Query: {
-    playlists: (source, args, context) =>  {
-      return callApi(args.url, 'GET', context.token);
-    },
-    playlist: (source, args, context) =>  {
-      return callApi(args.url, 'GET', context.token);
-    },
-    playlistTracks: (source, args, context) => {
-      return callApi(args.url, 'GET', context.token);
-    }
-  }
-};

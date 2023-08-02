@@ -1,11 +1,8 @@
-const { callApi } = require('../utils/callApi');
-const { gql } = require('apollo-server-lambda');
-
-exports.UserTypes = gql`
-  extend type Query {
-    user(url: String!): User
+export const userTypes = `#graphql
+   type Query {
+    user: User
   }
-
+  
   type ExplicitContent {
     filter_enabled: Boolean
     filter_locked: Boolean
@@ -31,11 +28,3 @@ exports.UserTypes = gql`
     uri: String
   }
 `;
-
-exports.UserResolvers = {
-  Query: {
-    user: (source, args, context) =>  {
-      return callApi(args.url, 'GET', context.token);
-    }
-  }
-};
