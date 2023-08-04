@@ -23,8 +23,8 @@ export class SpotifyAPI extends RESTDataSource {
     return this.get<any>(`playlists/${playlistID}`);
   }
 
-  async getPlaylists(morePlaylists: string): Promise<any> {
-    const url = morePlaylists ? morePlaylists : 'me/playlists?limit=50';
+  async getPlaylists(offset: number): Promise<any> {
+    const url = `me/playlists?offset=${offset.toString()}&limit=50`;
     return this.get<any>(url);
   }
 
@@ -33,8 +33,8 @@ export class SpotifyAPI extends RESTDataSource {
     return this.get<any>(url);
   }
 
-  async getAlbums(moreAlbums: string): Promise<any> {
-    const url = moreAlbums ? moreAlbums : `me/albums?limit=50`;
+  async getAlbums(offset: number): Promise<any> {
+    const url = `me/albums?offset=${offset.toString()}&limit=50`;
     return this.get<any>(url);
   }
 

@@ -1,6 +1,6 @@
 export const playlistTypes = `#graphql
   type Query {
-    playlists(morePlaylists: String): PlaylistResponse,
+    playlists(offset: Int!): PlaylistResponse,
     playlist(playlistID: String!): Playlist,
     playlistTracks(trackOffset: Int!, playlistID: String!, limit: Int!): TrackResponse
   }

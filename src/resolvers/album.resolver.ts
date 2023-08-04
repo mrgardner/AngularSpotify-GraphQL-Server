@@ -1,7 +1,7 @@
 export const albumResolvers = {
   Query: {
-    albums: async (_, { moreAlbums }, { dataSources }) => {
-      return dataSources.spotifyApi.getAlbums(moreAlbums);
+    albums: async (_, { offset }, { dataSources }) => {
+      return dataSources.spotifyApi.getAlbums(offset);
     }
   },
 };

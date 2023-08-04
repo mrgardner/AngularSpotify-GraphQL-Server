@@ -1,6 +1,6 @@
 export const albumTypes = `#graphql
   type Query {
-    albums(morePlaylists: String): AlbumResponse,
+    albums(offset: Int!): AlbumResponse,
   }
 
   type AlbumResponse {
