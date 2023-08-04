@@ -6,17 +6,14 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "yarn compile && node ./dist/src/index.js"
+    "start": "yarn compile && node ./dist/index.js"
   },
   "author": "Matthew Gardner",
   "license": "ISC",
   "dependencies": {
     "@apollo/datasource-rest": "^6.0.1",
     "@apollo/server": "^4.9.0",
-    "apollo-server-lambda": "^3.12.0",
-    "graphql": "^16.7.1",
-    "lodash": "^4.17.15",
-    "node-fetch": "^2.6.0"
+    "graphql": "^16.7.1"
   },
   "devDependencies": {
     "@types/node": "^20.4.5",
