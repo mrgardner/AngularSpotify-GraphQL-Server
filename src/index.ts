@@ -5,7 +5,7 @@ import { resolvers } from './resolvers/index.js';
 import { typeDefs } from './schema/index.js';
 
 interface SpotifyContext {
-  token?: String;
+  token?: string;
   dataSources: {
     spotifyApi: SpotifyAPI;
   };
