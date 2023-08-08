@@ -31,7 +31,8 @@ export class SpotifyAPI extends RESTDataSource {
     return this.get(url);
   }
 
-  async getPlaylistTracks(trackOffset: number, playlistID: string, limit: number): Promise<TrackResponse> {
+  async getPlaylistTracks(offset: number = 0, playlistID: string, limit: number = 100): Promise<TrackResponse> {
+    const trackOffset = offset * limit;
     const url = `playlists/${playlistID}/tracks?offset=${trackOffset.toString()}&limit=${limit.toString()}`;
     return this.get(url);
   }

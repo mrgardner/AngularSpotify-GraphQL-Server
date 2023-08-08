@@ -6,8 +6,8 @@ export const playlistResolvers = {
     playlists: async (_, { offset }, { dataSources }) => {
       return dataSources.spotifyApi.getPlaylists(offset);
     },
-    playlistTracks: async (_, { trackOffset, playlistID, limit }, { dataSources }) => {
-      return dataSources.spotifyApi.getPlaylistTracks(trackOffset, playlistID, limit);
+    playlistTracks: async (_, { offset, playlistID, limit }, { dataSources }) => {
+      return dataSources.spotifyApi.getPlaylistTracks(offset, playlistID, limit);
     }
   },
 };
